@@ -1,0 +1,43 @@
+
+<!-- home.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+<div class="max-w-3xl mx-auto my-10 bg-white shadow-lg rounded-lg p-8">
+    <h1 class="text-2xl font-bold mb-6">Posts</h1>
+    <div class="space-y-6">
+        <div class="border-b pb-4" th:each="post : ${posts}">
+            <h2 class="text-xl font-bold"><a th:href="@{'/posts/' + ${post.id}}" th:text="${post.title}">Title</a></h2>
+            <p class="text-gray-500" th:text="'Written by ' + ${post.account.firstName}">Account First Name</p>
+            <p class="text-gray-500" th:text="'Published at ' + ${post.createdAt}">Created At</p>
+            <p class="text-gray-500" th:text="'Updated at ' + ${post.updatedAt}">Updated At</p>
+            <p class="prose" th:text="${post.body}">Body text</p>
+        </div>
+    </div>
+    <div class="mt-6 flex justify-between items-center">
+        <div sec:authorize="isAuthenticated()">
+            <a th:href="@{/posts/new}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                New Post
+            </a>
+        </div>
+        <div sec:authorize="!isAuthenticated()">
+            <a th:href="@{/register}" class="text-blue-500 hover:text-blue-700 mr-4">Register</a>
+            <a th:href="@{/login}" class="text-blue-500 hover:text-blue-700">Login</a>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-red-200 focus:ring-opacity-50">
+                    Logout
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
