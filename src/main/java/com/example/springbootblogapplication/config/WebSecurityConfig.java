@@ -1,7 +1,5 @@
 package com.example.springbootblogapplication.config;
 
-
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -30,10 +28,10 @@ public class WebSecurityConfig {
                         auth.requestMatchers(antMatcher("/fonts/**")).permitAll();
                         auth.requestMatchers(antMatcher("/webjars/**")).permitAll();
                         auth.requestMatchers(antMatcher("/")).permitAll();
-                        auth.requestMatchers(antMatcher("/rss/**")).permitAll();
                         auth.requestMatchers(antMatcher("/register/**")).permitAll();
                         auth.requestMatchers(antMatcher("/posts/**")).permitAll();
-                        auth.requestMatchers(PathRequest.toH2Console()).permitAll();
+                        //auth.requestMatchers(antMatcher("/rss/**")).permitAll();
+                        //auth.requestMatchers(PathRequest.toH2Console()).permitAll();
                         auth.anyRequest().authenticated();
                 })
 

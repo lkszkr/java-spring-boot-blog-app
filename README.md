@@ -6,7 +6,7 @@
 3. [Project Structure](#project-structure)
 4. [Features](#features)
 5. [Security](#security)
-6. [Database Schema](#database-schema)
+6. [Database Schema](#database-model)
 7. [API Endpoints](#api-endpoints)
 8. [Installation & Setup](#installation--setup)
 9. [User Roles & Permissions](#user-roles--permissions)
